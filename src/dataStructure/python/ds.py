@@ -1,4 +1,5 @@
 from collections.abc import Sequence
+from queue import Empty
 
 class Stack():
     def __init__(self, length):
@@ -99,7 +100,9 @@ class Heap():
 
             while child <= self.size:
 
-                if child+1 < self.size and self.heap[child] < self.heap[child+1]: #check parent node have enough child node(2 nodes), and find which child node is bigger(guarantee parent node is bigger than child nodes when swap)
+                # check parent node have enough child node(2 nodes)
+                # find which child node is bigger(guarantee parent node is bigger than child nodes when swap)
+                if child+1 < self.size and self.heap[child] < self.heap[child+1]:
                     child += 1
                 
                 if self.heap[child] > self.heap[parent]:
@@ -145,4 +148,71 @@ class Heap():
                 parent = child
                 child *= 2
 
+            return tmp
+
+class Queue():
+    def __init__(self) -> None:
+        self.queue = []
+
+    def __len__(self):
+        return len(self.queue)
+
+    def is_empty(self):
+        return len(self.queue) == 0
+    
+    def enqueue(self, data):
+        self.queue.append(data)
+    
+    def dequeue(self):
+        if self.is_empty():
+            raise Empty('Queue is empty')
+        else:
+            return self.queue.pop(0)
+
+    def first(self):
+        if self.is_empty():
+            raise Empty('Queue is empty')
+        else:
+            return self.queue[0]
+
+class ArrayQueue():
+    def __init__(self, length=10):
+        self.queue = [None for _ in range(length)]
+        self.length = length
+        self.f = 0
+        self.size = 0
+    
+    def __len__(self):
+        return self.size
+    
+    def _is_full(self):
+        return self.size >= self.length
+
+    def _resize(self):
+        tmp = [None] * self.length * 2
+        walk = self.f
+        for k in range(self.length):
+            tmp[k] = self.queue[walk]
+            walk = (walk + 1) % self.length
+        self.queue = tmp
+        self.f = 0
+        self.length *= 2
+
+    def is_empty(self):
+        return self.size == 0
+
+    def enqueue(self, data):
+        if self._is_full():
+            self._resize()
+        self.queue[(self.f + self.size) % self.length] = data
+        self.size += 1
+
+    def dequeue(self):
+        if self.is_empty():
+            raise Empty("Queue is empty")
+        else:
+            tmp = self.queue[self.f]
+            self.queue[self.f] = None
+            self.f = (self.f + 1) % self.length
+            self.size -= 1
             return tmp
