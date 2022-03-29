@@ -216,3 +216,33 @@ class ArrayQueue():
             self.f = (self.f + 1) % self.length
             self.size -= 1
             return tmp
+
+class Tree:
+    def __init__(self):
+        pass
+
+class Node:
+    def __init__(self, data, link=None):
+        self.data = data
+        self.link = link
+
+    def __iter__(self):
+        self.cursor = self
+        return self
+
+    def __next__(self):
+        if self.cursor == None:
+            raise StopIteration
+        else:
+            tmp = self.cursor.data
+            self.cursor = self.cursor.link
+            return tmp
+
+    def push(self, data):
+        link = self
+        while link.link != None:
+            link = link.link
+        tmp = Node(data)
+        link.link = tmp
+
+
