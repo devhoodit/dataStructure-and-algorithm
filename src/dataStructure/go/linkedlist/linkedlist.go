@@ -1,5 +1,7 @@
-// This is Linked list used in go
+// Linked list used in go (link below)
 // https://cs.opensource.google/go/go/+/refs/tags/go1.18:src/container/list/list.go
+
+// This code is only practice
 
 package ds
 

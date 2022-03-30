@@ -1,17 +1,18 @@
 package main
 
 import (
-	ds "ds/linkedlist"
+	"ds/stack"
 	"fmt"
 )
 
 func main() {
-	a := new(ds.Linkedlist)
-	fmt.Print(a.Length)
+	a := stack.New()
 	a.Push(1)
 	a.Push(2)
 	a.Push(3)
-	a.Pop(1)
-
-	fmt.Print(a.Index(1))
+	fmt.Print(a.Len())
+	fmt.Print(a.Pop())
+	fmt.Print(a.Pop())
+	fmt.Print(a.Pop())
+	fmt.Print(a.Len())
 }
