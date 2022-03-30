@@ -1,7 +1,7 @@
 package main
 
 import (
-	ds "ds/ds"
+	ds "ds/linkedlist"
 	"fmt"
 )
 

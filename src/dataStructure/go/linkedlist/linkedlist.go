@@ -1,3 +1,6 @@
+// This is Linked list used in go
+// https://cs.opensource.google/go/go/+/refs/tags/go1.18:src/container/list/list.go
+
 package ds
 
 type Linkedlist struct {
