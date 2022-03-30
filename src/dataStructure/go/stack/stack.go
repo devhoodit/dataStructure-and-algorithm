@@ -20,7 +20,7 @@ func (s *Stack) Pop() any {
 	if s.is_empty() {
 		panic("Stack underflow, stack is empty")
 	}
-	tmp := s.stk.Front()
+	tmp := s.stk.Back()
 	s.stk.Remove(tmp)
 	return tmp.Value
 }

@@ -1,12 +1,12 @@
 package main
 
 import (
-	"ds/stack"
+	Queue "ds/queue"
 	"fmt"
 )
 
 func main() {
-	a := stack.New()
+	a := Queue.New()
 	a.Push(1)
 	a.Push(2)
 	a.Push(3)
