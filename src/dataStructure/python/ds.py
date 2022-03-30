@@ -245,4 +245,3 @@ class Node:
         tmp = Node(data)
         link.link = tmp
 
-
