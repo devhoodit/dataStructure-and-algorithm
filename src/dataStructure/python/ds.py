@@ -222,26 +222,57 @@ class Tree:
         pass
 
 class Node:
-    def __init__(self, data, link=None):
-        self.data = data
-        self.link = link
+    class Node:
+        def __init__(self, data, link=None):
+            self.data = data
+            self.link = link
 
-    def __iter__(self):
-        self.cursor = self
-        return self
+        def __iter__(self):
+            self.cursor = self
+            return self
 
-    def __next__(self):
-        if self.cursor == None:
-            raise StopIteration
-        else:
-            tmp = self.cursor.data
-            self.cursor = self.cursor.link
-            return tmp
+        def __next__(self):
+            if self.cursor == None:
+                raise StopIteration
+            else:
+                tmp = self.cursor.data
+                self.cursor = self.cursor.link
+                return tmp
 
-    def push(self, data):
-        link = self
-        while link.link != None:
-            link = link.link
-        tmp = Node(data)
-        link.link = tmp
+        def push(self, data):
+            link = self
+            while link.link != None:
+                link = link.link
+            tmp = Node(data)
+            link.link = tmp
+        
+    class dNode:
+        def __init__(self, data, left_link=None, right_link=None):
+            self.data = data
+            self.left_link = left_link
+            self.right_link = right_link
+
+class Linkedlist:
+    class Linkedlist(Node.Node):
+        def __init__(self):
+            pass
+
+    class DoubleLinkedList():
+        def __init__(self):
+            self.length = 0
+            self.link = None
+
+        def __len__(self):
+            return self.length
+
+        def append(self, data):
+            cursor = self.link
+            while cursor:
+                cursor = cursor.right_link
+            tmp = dNode(data, left_link=cursor)
+            cursor.right_link = tmp
+            length += 1
+
+        def remove(self, n):
+            pass
 
