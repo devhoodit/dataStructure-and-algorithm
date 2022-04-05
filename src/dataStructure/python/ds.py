@@ -252,8 +252,8 @@ class Node:
             self.left_link = left_link
             self.right_link = right_link
 
-class Linkedlist:
-    class Linkedlist(Node.Node):
+class LinkedList:
+    class LinkedList(Node.Node):
         def __init__(self):
             pass
 
@@ -269,10 +269,22 @@ class Linkedlist:
             cursor = self.link
             while cursor:
                 cursor = cursor.right_link
-            tmp = dNode(data, left_link=cursor)
-            cursor.right_link = tmp
-            length += 1
+            tmp = Node.dNode(data, left_link=cursor)
+            if self.length == 0:
+                self.link = tmp
+            else:
+                cursor.right_link = tmp
+            self.length += 1
 
-        def remove(self, n):
-            pass
+        def pop(self, n):
+            cursor = self.link
+            for _ in range(n):
+               cursor = cursor.right_link
+            if n == 0:
+                cursor.left_link.link = cursor.right_link
+                cursor.right_link.left_link = cursor.left_link
+            else:
+                cursor.left_link.right_link = cursor.right_link.left_link
+            cursor.right_link.left_link = cursor.left_link.right_link
+            return cursor.data
 
