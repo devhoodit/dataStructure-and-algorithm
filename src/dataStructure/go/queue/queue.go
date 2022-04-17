@@ -12,11 +12,11 @@ func New() *Queue {
 	return &Queue{que: list.New()}
 }
 
-func (s *Queue) Push(data any) {
+func (s *Queue) Push(data interface{}) {
 	s.que.PushBack(data)
 }
 
-func (s *Queue) Pop() any {
+func (s *Queue) Pop() interface{} {
 	if s.is_empty() {
 		panic("Queue underflow, Queue is empty")
 	}

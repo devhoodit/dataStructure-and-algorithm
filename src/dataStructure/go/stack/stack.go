@@ -12,11 +12,11 @@ func New() *Stack {
 	return &Stack{stk: list.New()}
 }
 
-func (s *Stack) Push(data any) {
+func (s *Stack) Push(data interface{}) {
 	s.stk.PushBack(data)
 }
 
-func (s *Stack) Pop() any {
+func (s *Stack) Pop() interface{} {
 	if s.is_empty() {
 		panic("Stack underflow, stack is empty")
 	}

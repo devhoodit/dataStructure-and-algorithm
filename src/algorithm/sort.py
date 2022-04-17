@@ -1,7 +1,7 @@
 import sys
 from os import path
 sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
-from dataStructure import ds
+from dataStructure.python import ds
 
 """
 sorting examples
@@ -12,6 +12,9 @@ comparison sort
 
 selection sort
 -selection sort
+
+merge sort
+-merge sort
 
 """
 
@@ -113,8 +116,6 @@ def selection_sort(arr):
         arr[min], arr[i] = arr[i], arr[min]
     return arr
 
-
-
 """
 heap sort
 """
@@ -123,6 +124,48 @@ def heap_sort(arr):
     
     pass
 
+"""
+merge sort
+
+1. divide array until all array size = 1
+2. merge two array. sort, (already each of arrays sorted, compare only first element of each array)
+"""
+
+def merge_sort(arr):
+
+    def _merge(arr, l, mid, r):
+        tmp = []
+        tl = l
+        rl = mid + 1
+        while tl <= mid and rl <= r:
+            if arr[tl] < arr[rl]:
+                tmp.append(arr[tl])
+                tl += 1
+            else:
+                tmp.append(arr[rl])
+                rl += 1
+        if tl > mid:
+            for n in range(r - rl + 1):
+                tmp.append(arr[rl + n])
+            
+        else:
+            for n in range(mid - tl + 1):
+                tmp.append(arr[tl + n])
+
+        for n, index in enumerate(tmp):
+            arr[l + n] = index
+        
+
+    def _merge_sort(arr, l, r):
+        if l < r:
+            mid = (l + r) // 2
+            _merge_sort(arr, l, mid)
+            _merge_sort(arr, mid + 1, r)
+            _merge(arr, l, mid, r)
+
+    _merge_sort(arr, 0, len(arr) - 1)
+
+    return arr
 
 
 def sort(method):
@@ -136,4 +179,4 @@ def sort(method):
         except Exception as e:
             print(e)
 
-sort(selection_sort)
+sort(merge_sort)
